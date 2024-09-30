@@ -5,6 +5,6 @@
 ## 3. Команда для запуска — pytest -v.
 
 ___
-### В файле _personal_credentials_generators.py_ происходит генерация логина и пароля
+### В файле _personal_credentials_generators.py_ происходит генерация логина и пароля.
 
-### В файле _elements_to_find.py_ лежать все использующиеся локаторы
+### В файле _elements_to_find.py_ лежать все использующиеся локаторы.
