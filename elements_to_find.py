@@ -22,3 +22,4 @@ class Locators:
     TEXT_BREAD = By.XPATH, "//h2[text()='Булки']"  # Текст "Булки"
     TEXT_SAUCE = By.XPATH, "//h2[text()='Соусы']"  # Текст "Соусы"
     TEXT_TOPPING = By.XPATH, "//h2[text()='Начинки']"  # Текст "Начинки"
+    CURRENT_SECTION = By.XPATH, "//div[@class = 'tab_tab__1SPyG tab_tab_type_current__2BEPc pt-4 pr-10 pb-4 pl-10 noselect']"  # Выбранный раздела бургера

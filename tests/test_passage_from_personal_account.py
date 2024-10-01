@@ -1,22 +1,16 @@
-from conftest import driver, url_registration, url_main_page
+from conftest import driver, setup_user
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions
 from elements_to_find import Locators
-from credentials_generators.personal_credentials_generators import generator_login_email, generator_password
+from data import Url
 
 
 class TestPassageFromPersonalAccount:
-    def test_passage_by_click_constructor(self, driver, url_registration, url_main_page):
+    def test_passage_by_click_constructor(self, driver, setup_user):
         """Переход по клику на Конструктор."""
-        driver.get(url_registration)
-
-        driver.find_element(*Locators.NAME_INPUT_FIELD).send_keys("Тестовый пользователь")
-        email = generator_login_email()
-        driver.find_element(*Locators.EMAIL_INPUT_FIELD).send_keys(email)
-        password = generator_password()
-        driver.find_element(*Locators.PASSWORD_INPUT_FIELD).send_keys(password)
-        driver.find_element(*Locators.BUTTON_REGISTRATION).click()
+        email, password = setup_user
+        driver.get(Url.URL_LOGIN)
 
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((By.XPATH, Locators.TITLE_LOGIN_PAGE[1])))
@@ -33,18 +27,12 @@ class TestPassageFromPersonalAccount:
         driver.find_element(*Locators.CONSTRUCTOR_HEADER).click()
 
         url = driver.current_url
-        assert url == url_main_page
+        assert url == Url.URL_MAIN_PAGE
 
-    def test_passage_by_click_logo(self, driver, url_registration, url_main_page):
+    def test_passage_by_click_logo(self, driver, setup_user):
         """Переход по клику на логотип Stellar Burgers."""
-        driver.get(url_registration)
-
-        driver.find_element(*Locators.NAME_INPUT_FIELD).send_keys("Тестовый пользователь")
-        email = generator_login_email()
-        driver.find_element(*Locators.EMAIL_INPUT_FIELD).send_keys(email)
-        password = generator_password()
-        driver.find_element(*Locators.PASSWORD_INPUT_FIELD).send_keys(password)
-        driver.find_element(*Locators.BUTTON_REGISTRATION).click()
+        email, password = setup_user
+        driver.get(Url.URL_LOGIN)
 
         WebDriverWait(driver, 3).until(
             expected_conditions.visibility_of_element_located((By.XPATH, Locators.TITLE_LOGIN_PAGE[1])))
@@ -61,4 +49,4 @@ class TestPassageFromPersonalAccount:
         driver.find_element(*Locators.LOGO_HEADER).click()
 
         url = driver.current_url
-        assert url == url_main_page
+        assert url == Url.URL_MAIN_PAGE
